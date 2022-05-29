@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  php:
+    build: .
+    restart: always
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - 8080:80
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./database/mongodb/db:/data/db
+      - ./database/mongodb/dev.archive:/Databases/dev.archive
+      - ./database/mongodb/production:/Databases/production
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1111
