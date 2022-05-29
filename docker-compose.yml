@@ -13,6 +13,7 @@ services:
   mongo:
     image: mongo
     restart: always
+    container_name: mongo
     volumes:
       - ./database/mongodb/db:/data/db
       - ./database/mongodb/dev.archive:/Databases/dev.archive
